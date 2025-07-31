@@ -5,8 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/physical-intelligence-clone' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/physical-intelligence-clone/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/Personal_site' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/Personal_site/' : '',
+  distDir: 'out'
 }
 
 export default nextConfig 
