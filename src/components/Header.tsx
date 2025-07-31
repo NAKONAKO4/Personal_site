@@ -6,26 +6,26 @@ export default function Header() {
       <Link href="/" className="text-3xl font-serif">
         Physical Intelligence (π)
       </Link>
-      <nav className="flex gap-4">
+      <div className="flex gap-4">
         <Link 
           href="/" 
-          className="text-link decoration-2 hover:decoration-foreground hover:text-foreground"
+          className="underline underline-offset-8 hover:decoration-2 decoration-2 hover:decoration-[var(--foreground)] hover:text-[var(--foreground)]"
         >
           Home
         </Link>
         <Link 
           href="/blog" 
-          className="text-link hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70"
+          className="underline underline-offset-8 hover:decoration-2 hover:decoration-[var(--foreground)]/50 hover:text-[var(--foreground)]/70"
         >
           Research
         </Link>
         <Link 
           href="/join-us" 
-          className="text-link hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70"
+          className="underline underline-offset-8 hover:decoration-2 hover:decoration-[var(--foreground)]/50 hover:text-[var(--foreground)]/70"
         >
           Join Us
         </Link>
-      </nav>
+      </div>
     </header>
   );
 } 

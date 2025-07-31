@@ -37,7 +37,8 @@ const researchItems = [
     date: "February 4, 2025",
     description: "We are releasing the weights and code for π0 as well as our new π0-FAST autoregressive model.",
     href: "/blog/openpi",
-    type: "blog"
+    type: "blog",
+    secondary: true
   },
   {
     title: "FAST: Efficient Robot Action Tokenization",
@@ -70,26 +71,84 @@ const teamMembers = [
 ];
 
 function ResearchItem({ item }: { item: typeof researchItems[0] }) {
-  const baseClasses = "flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer";
-  const regularClasses = "hover:bg-background-hover";
-  const featuredClasses = item.featured 
-    ? "bg-white border border-black shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] transition-all"
-    : regularClasses;
-  
+  if (item.featured) {
+    return (
+      <Link 
+        href={item.href} 
+        className="flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#000] transition-all"
+      >
+        <div className="flex items-baseline gap-2 justify-between relative">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <div className="absolute size-[7px] bg-gray-900 rounded-sm -left-[40px] top-[7px] outline outline-2 outline-[#FFFEF7]" />
+            <div className="text-xs truncate font-semibold">
+              {item.title.includes('π0.5') && (
+                <>
+                  <span className="font-serif">π</span>
+                  <sub className="tracking-tighter">0.5</sub>
+                  : a VLA with Open-World Generalization
+                </>
+              )}
+              {item.title.includes('π0:') && (
+                <>
+                  <span className="font-serif">π</span>
+                  <sub className="tracking-tighter">0</sub>
+                  : Our First Generalist Policy
+                </>
+              )}
+            </div>
+          </div>
+          <div className="text-xs text-[#A8A179] shrink-0 ml-2">
+            {item.date}
+          </div>
+        </div>
+        <p className="text-xs text-[#A8A179] no-underline">
+          {item.description}
+        </p>
+      </Link>
+    );
+  }
+
+  if (item.secondary) {
+    return (
+      <Link 
+        href={item.href} 
+        className="flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white/60 border border-[#D4D3CB] hover:border-[#C0BDAD] hover:shadow-[3px_3px_0px_#C0BDAD] transition-all hover:bg-white"
+      >
+        <div className="flex items-baseline gap-2 justify-between relative">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <div className="absolute size-[7px] bg-gray-900 rounded-sm -left-[40px] top-[7px] outline outline-2 outline-[#FFFEF7]" />
+            <div className="text-xs truncate font-semibold">
+              Open Sourcing <span className="font-serif">π</span><sub className="tracking-tighter">0</sub>
+            </div>
+          </div>
+          <div className="text-xs text-[#A8A179] shrink-0 ml-2">
+            {item.date}
+          </div>
+        </div>
+        <p className="text-xs text-[#A8A179] no-underline">
+          {item.description}
+        </p>
+      </Link>
+    );
+  }
+
   return (
-    <Link href={item.href} className={`${baseClasses} ${featuredClasses}`}>
+    <Link 
+      href={item.href} 
+      className="flex flex-col gap-1 px-3 py-2 ml-6 hover:bg-[#F5F4EF] group cursor-pointer"
+    >
       <div className="flex items-baseline gap-1 justify-between text-xs w-full relative">
-        <button className="absolute size-[7px] bg-gray-900 rounded-sm -left-[40px] top-[4px] outline outline-background outline-2" />
+        <div className="absolute size-[7px] bg-gray-900 rounded-sm -left-[40px] top-[4px] outline outline-2 outline-[#FFFEF7]" />
         <div className="flex items-baseline gap-2 relative grow truncate">
           <div className="font-semibold truncate" title={item.title}>
             {item.title}
           </div>
         </div>
-        <div className="text-xs text-muted-foreground whitespace-nowrap shrink-0">
+        <div className="text-xs text-[#A8A179] whitespace-nowrap shrink-0">
           {item.date}
         </div>
       </div>
-      <div className="text-xs text-muted-foreground">
+      <div className="text-xs text-[#A8A179]">
         {item.description}
       </div>
     </Link>
@@ -111,7 +170,7 @@ export default function Home() {
 
         {/* Research Timeline */}
         <div className="pl-2">
-          <div className="relative flex flex-col space-y-4 border-l border-gray-300 py-4 before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-background before:absolute before:-left-px before:top-0 after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-background after:absolute after:-left-px after:bottom-0">
+          <div className="relative flex flex-col space-y-4 border-l border-gray-300 py-4 before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-[#FFFEF7] before:absolute before:-left-px before:top-0 after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-[#FFFEF7] after:absolute after:-left-px after:bottom-0">
             {researchItems.map((item, index) => (
               <ResearchItem key={index} item={item} />
             ))}
