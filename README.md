@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Physical Intelligence Clone
 
-## Getting Started
+A modern recreation of the Physical Intelligence company website built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
+
+- **Modern Tech Stack**: Next.js 14+ with App Router
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Static Export**: Optimized for GitHub Pages deployment
+- **TypeScript**: Full type safety
+- **SEO Optimized**: Meta tags and OpenGraph support
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14+
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Fonts**: JetBrains Mono (monospace), Times (serif)
+- **Deployment**: GitHub Pages with GitHub Actions
+
+## 📦 Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/physical-intelligence-clone.git
+cd physical-intelligence-clone
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏗️ Build and Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Local Build
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+### GitHub Pages Deployment
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your code to the `main` branch
+2. Go to your repository settings
+3. Navigate to "Pages" section
+4. Set source to "GitHub Actions"
+5. The workflow will automatically build and deploy your site
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Your site will be available at: `https://YOUR_USERNAME.github.io/physical-intelligence-clone`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/
+│   ├── layout.tsx              # Root layout
+│   ├── page.tsx               # Homepage
+│   ├── blog/
+│   │   ├── page.tsx           # Blog list
+│   │   └── [slug]/
+│   │       └── page.tsx       # Blog post details
+│   └── join-us/
+│       └── page.tsx           # Careers page
+├── components/
+│   ├── Header.tsx             # Navigation
+│   └── Footer.tsx             # Footer
+└── globals.css                # Global styles
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Design System
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Colors
+- **Background**: `#FFFEF7`
+- **Foreground**: `#111111`
+- **Accent**: `#F0BE25` (yellow)
+- **Muted**: `#A8A179`
+- **Border**: `#E6E0CB`
+
+### Typography
+- **Monospace**: JetBrains Mono (primary)
+- **Serif**: Times (headings and brand)
+
+## 🔧 Customization
+
+### Adding New Blog Posts
+
+Edit `src/app/blog/[slug]/page.tsx` and add your post to the `blogPosts` object:
+
+```typescript
+const blogPosts = {
+  'your-post-slug': {
+    title: 'Your Post Title',
+    date: 'YYYY-MM-DD',
+    authors: 'Author Names',
+    content: `Your content here...`
+  }
+};
+```
+
+### Modifying the Team
+
+Edit the `teamMembers` array in `src/app/page.tsx`.
+
+### Updating Colors
+
+Modify the color palette in `tailwind.config.ts`.
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 🔗 Links
+
+- [Original Physical Intelligence Website](https://physicalintelligence.company)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
