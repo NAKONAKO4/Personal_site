@@ -39,19 +39,25 @@ jobs:
           static_site_generator: next
           
       - name: Build with Next.js
+        run: npm run build
+        
+      - name: List files and directories
         run: |
-          npm run build
+          echo "Current directory contents:"
           ls -la
-          
-      - name: Check out directory
-        run: |
-          if [ -d "./out" ]; then
-            echo "✅ out directory exists"
-            ls -la ./out
+          echo ""
+          echo "Looking for out directory:"
+          if [ -d "out" ]; then
+            echo "✅ Found out directory"
+            echo "Contents of out directory:"
+            ls -la out/
           else
             echo "❌ out directory not found"
-            echo "Available directories:"
-            ls -la
+            echo "Checking for .next directory:"
+            if [ -d ".next" ]; then
+              echo "Found .next directory:"
+              ls -la .next/
+            fi
           fi
           
       - name: Upload artifact
