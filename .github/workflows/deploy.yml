@@ -20,9 +20,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    env:
-      NODE_ENV: production
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,51 +39,46 @@ jobs:
           static_site_generator: next
           
       - name: Build with Next.js
-        env:
-          NODE_ENV: production
         run: |
-          echo "Building in production mode..."
-          echo "NODE_ENV=$NODE_ENV"
-          npm run build
-        
-      - name: Debug directory structure
-        run: |
-          echo "=== Current working directory ==="
-          pwd
-          echo ""
-          echo "=== Environment ==="
-          echo "NODE_ENV: $NODE_ENV"
-          echo ""
-          echo "=== Root directory contents ==="
-          ls -la
-          echo ""
-          echo "=== Looking for build outputs ==="
-          if [ -d "out" ]; then
-            echo "✅ Found out directory at $(pwd)/out"
-            echo "Contents of out directory:"
-            ls -la out/ | head -20
-            echo ""
-            echo "Total files in out:"
-            find out -type f | wc -l
-            echo ""
-            echo "Sample files:"
-            find out -name "*.html" | head -5
-          else
-            echo "❌ out directory not found"
-            echo ""
-            echo "Checking for .next directory:"
-            if [ -d ".next" ]; then
-              echo "Found .next directory:"
-              ls -la .next/ | head -10
-              echo ""
-              echo "Checking .next contents:"
-              find .next -name "*.html" | head -5
-            fi
-          fi
+          echo "=== Starting Next.js build ==="
+          echo "Current directory: $(pwd)"
+          echo "NODE_ENV: ${NODE_ENV:-development}"
           
-          echo ""
-          echo "=== All directories in current path ==="
-          find . -maxdepth 2 -type d | grep -E "(out|\.next|build|dist)"
+          # 设置生产环境
+          export NODE_ENV=production
+          echo "Set NODE_ENV to: $NODE_ENV"
+          
+          # 执行构建
+          npm run build
+          
+          echo "=== Build completed ==="
+          
+      - name: Verify build output
+        run: |
+          echo "=== Checking build results ==="
+          ls -la
+          
+          if [ -d "out" ]; then
+            echo "✅ SUCCESS: out directory created!"
+            echo "Files in out directory:"
+            ls -la out/
+            echo ""
+            echo "HTML files found:"
+            find out -name "*.html" | head -10
+            echo ""
+            echo "Total files: $(find out -type f | wc -l)"
+          else
+            echo "❌ FAILED: out directory not found"
+            echo ""
+            echo "Available directories:"
+            ls -la | grep "^d"
+            echo ""
+            echo "Checking package.json scripts:"
+            cat package.json | grep -A 5 '"scripts"'
+            echo ""
+            echo "Checking next.config.mjs:"
+            cat next.config.mjs
+          fi
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
