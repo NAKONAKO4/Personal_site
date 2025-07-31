@@ -68,13 +68,14 @@ We're excited to see what the research community builds with these tools. Join o
 };
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function BlogPost({ params }: PageProps) {
-  const post = blogPosts[params.slug as keyof typeof blogPosts];
+export default async function BlogPost({ params }: PageProps) {
+  const { slug } = await params;
+  const post = blogPosts[slug as keyof typeof blogPosts];
   
   if (!post) {
     notFound();

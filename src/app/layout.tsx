@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="font-mono text-sm">
-      <body className="bg-background text-foreground antialiased">
+      <body>
         <div className="p-4 md:p-12 overflow-hidden">
           <div className="w-full max-w-xl">
             {children}

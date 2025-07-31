@@ -11,7 +11,7 @@ export default function JoinUsPage() {
         
         <div className="prose max-w-none">
           <p className="text-lg mb-6">
-            We're building the future of physical intelligence. Join our team of engineers, 
+            We&apos;re building the future of physical intelligence. Join our team of engineers, 
             scientists, and researchers who are developing foundation models that will power 
             the next generation of robots.
           </p>
@@ -24,7 +24,7 @@ export default function JoinUsPage() {
               <p className="text-muted-foreground mb-4">San Francisco, CA • Full-time</p>
               <p>
                 Lead research in vision-language-action models and robot learning. 
-                You'll work on cutting-edge problems in foundation models for robotics.
+                You&apos;ll work on cutting-edge problems in foundation models for robotics.
               </p>
             </div>
             
