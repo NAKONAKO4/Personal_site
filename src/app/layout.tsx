@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="font-mono text-sm">
+    <html lang="en">
       <body>
         <div className="p-4 md:p-12 overflow-hidden">
           <div className="w-full max-w-xl">
