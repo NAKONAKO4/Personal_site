@@ -41,29 +41,39 @@ jobs:
       - name: Build with Next.js
         run: npm run build
         
-      - name: List files and directories
+      - name: Debug directory structure
         run: |
-          echo "Current directory contents:"
+          echo "=== Current working directory ==="
+          pwd
+          echo ""
+          echo "=== Root directory contents ==="
           ls -la
           echo ""
-          echo "Looking for out directory:"
+          echo "=== Looking for build outputs ==="
           if [ -d "out" ]; then
-            echo "✅ Found out directory"
+            echo "✅ Found out directory at $(pwd)/out"
             echo "Contents of out directory:"
-            ls -la out/
+            ls -la out/ | head -20
+            echo ""
+            echo "Total files in out:"
+            find out -type f | wc -l
           else
             echo "❌ out directory not found"
-            echo "Checking for .next directory:"
-            if [ -d ".next" ]; then
-              echo "Found .next directory:"
-              ls -la .next/
-            fi
           fi
+          
+          if [ -d ".next" ]; then
+            echo "Found .next directory:"
+            ls -la .next/ | head -10
+          fi
+          
+          echo ""
+          echo "=== All directories in current path ==="
+          find . -maxdepth 2 -type d
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: out
 
   deploy:
     environment:
