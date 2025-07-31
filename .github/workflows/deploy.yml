@@ -20,6 +20,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
+    env:
+      NODE_ENV: production
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,12 +42,20 @@ jobs:
           static_site_generator: next
           
       - name: Build with Next.js
-        run: npm run build
+        env:
+          NODE_ENV: production
+        run: |
+          echo "Building in production mode..."
+          echo "NODE_ENV=$NODE_ENV"
+          npm run build
         
       - name: Debug directory structure
         run: |
           echo "=== Current working directory ==="
           pwd
+          echo ""
+          echo "=== Environment ==="
+          echo "NODE_ENV: $NODE_ENV"
           echo ""
           echo "=== Root directory contents ==="
           ls -la
@@ -57,18 +68,25 @@ jobs:
             echo ""
             echo "Total files in out:"
             find out -type f | wc -l
+            echo ""
+            echo "Sample files:"
+            find out -name "*.html" | head -5
           else
             echo "❌ out directory not found"
-          fi
-          
-          if [ -d ".next" ]; then
-            echo "Found .next directory:"
-            ls -la .next/ | head -10
+            echo ""
+            echo "Checking for .next directory:"
+            if [ -d ".next" ]; then
+              echo "Found .next directory:"
+              ls -la .next/ | head -10
+              echo ""
+              echo "Checking .next contents:"
+              find .next -name "*.html" | head -5
+            fi
           fi
           
           echo ""
           echo "=== All directories in current path ==="
-          find . -maxdepth 2 -type d
+          find . -maxdepth 2 -type d | grep -E "(out|\.next|build|dist)"
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
