@@ -58,16 +58,7 @@ const researchItems = [
 ];
 
 const teamMembers = [
-  "Ali Amin", "Ashwin Balakrishna", "Kevin Black", "Noah Brown", "Danny Driess",
-  "James Darpinian", "Karan Dhabalia", "Adnan Esmail", "Michael Equi", "Chelsea Finn",
-  "Nick Fusai", "Catherine Glossop", "Lachy Groom", "Karol Hausman", "Joey Hejna",
-  "Gashon Hussein", "Brian Ichter", "Szymon Jakubczak", "Rowan Jen", "Tim Jones",
-  "Simar Kareer", "Ben Katz", "Kay Ke", "Marinda Lamb", "Sergey Levine",
-  "Adrian Li-Bell", "Mohith Mothukuri", "Suraj Nair", "Karl Pertsch", "Allen Ren",
-  "Charvi Sharma", "Lucy Shi", "Laura Smith", "Tobi Springenberg", "Kyle Stachowicz",
-  "Alexander Swerdlow", "James Tanner", "Marcel Torne", "Quan Vuong", "Anna Walling",
-  "Homer Walke", "Haohuan Wang", "Lili Yu", "Ury Zhilinsky", "Paul Zhiyuan Zhou",
-  "...and growing!"
+  "Join us!"
 ];
 
 function ResearchItem({ item }: { item: typeof researchItems[0] }) {

@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
       <Link href="/" className="text-3xl font-serif">
-        Physical Intelligence (π)
+        Azuliai's Page
       </Link>
       <div className="flex gap-4">
         <Link 
